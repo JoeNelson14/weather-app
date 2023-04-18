@@ -3,7 +3,7 @@ import './style.css';
 import loadPage from "./loadPage";
 
 
-let location = prompt('Enter your city');
+let location = '';
 if (location == '') location = 'chicago'.toUpperCase();
 loadPage(location);
 getWeather(location);

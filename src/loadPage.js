@@ -24,13 +24,24 @@ export default function loadPage(location) {
   let locationLabel = document.createElement('label');
   let locationInput = document.createElement('input');
   let weatherDetailsTitle = document.createElement('h5');
-  let extraWeatherContainer = document.createElement('div');
-  let percipitationText = document.createElement('p');
-  let humidityText = document.createElement('p');
-  let windText = document.createElement('p');
-  let futureCastContainer = document.createElement('div');
-  let horizontalRule = document.createElement('hr');
 
+  let extraWeatherContainer = document.createElement('div');
+  let highText = document.createElement('p');
+  let highNumber = document.createElement('p');
+  let lowText = document.createElement('p');
+  let lowNumber = document.createElement('p');
+  let cloudyText = document.createElement('p');
+  let cloudyNumber = document.createElement('p');
+  let percipitationText = document.createElement('p');
+  let perciptiationNumber = document.createElement('p');
+  let humidityText = document.createElement('p');
+  let humidityNumber = document.createElement('p');
+  let windText = document.createElement('p');
+  let windNumber = document.createElement('p');
+  let horizontalRule = document.createElement('hr');
+  let futureDayContainer = document.createElement('div');
+  let futureCastContainer = document.createElement('div');
+  
 
   /////// CLASS NAMES \\\\\\\
   headerContainer.classList.add('header-container');
@@ -43,10 +54,15 @@ export default function loadPage(location) {
   currentWeatherText.classList.add('current-weather-text');
   locationLabel.classList.add('location-label');
   weatherDetailsTitle.classList.add('weather-details-title');
+
   extraWeatherContainer.classList.add('extra-weather-container');
-  percipitationText.classList.add('percipitation-text');
-  humidityText.classList.add('humidity-text');
-  windText.classList.add('wind-text');
+  highNumber.classList.add('high-number');
+  lowNumber.classList.add('low-number');
+  cloudyNumber.classList.add('cloudy-number');
+  perciptiationNumber.classList.add('percipitation-number');
+  humidityNumber.classList.add('humidity-number');
+  windNumber.classList.add('wind-number');
+  futureDayContainer.classList.add('future-day-container');
   futureCastContainer.classList.add('future-cast-container');
 
   /////// ATTRIBUTES \\\\\\\
@@ -59,20 +75,30 @@ export default function loadPage(location) {
 
   /////// TEXT CONTENT \\\\\\\
   cityText.textContent = location;
-  dateText.textContent = getTimeDate();
   currentTempText.textContent = '56';
   currentWeatherText.textContent ='Rainy';
+  highText.textContent = 'High';
+  lowText.textContent = 'Low';
+  cloudyText.textContent = 'Cloudy';
   percipitationText.textContent = 'Percipitation';
   humidityText.textContent = 'Humidity';
   windText.textContent = 'Wind';
   locationLabel.textContent = 'Enter Location';
-  weatherDetailsTitle.textContent = 'Weather Details'
+  weatherDetailsTitle.textContent = 'Weather Details';
+
+  for (let i = 1; i < 8; i++)
+  {
+    let day = document.createElement('p');
+    day.classList.add('future-day', `day${i}`);
+    futureDayContainer.append(day);
+  }
 
 
   /////// APPEND ELEMENTS TO DOM \\\\\\\
   locationContainer.append(cityText, dateText);
   weatherIconContainer.append(currentWeatherImg, currentWeatherText);
-  extraWeatherContainer.append(percipitationText, humidityText, windText);
+  extraWeatherContainer.append(highText, highNumber, lowText, lowNumber, cloudyText, cloudyNumber, 
+    percipitationText, perciptiationNumber, humidityText, humidityNumber, windText, windNumber);
   futureCastContainer.append(locationLabel, locationInput, horizontalRule, weatherDetailsTitle, extraWeatherContainer);
   headerContainer.append(currentTempText, locationContainer, weatherIconContainer);
   contentContainer.append(headerContainer, futureCastContainer);

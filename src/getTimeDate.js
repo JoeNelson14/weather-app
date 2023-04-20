@@ -1,4 +1,4 @@
-import refreshInfo from ".";
+
 
 export default function getTimeDate() {
   let dt = new Date();

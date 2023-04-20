@@ -9,7 +9,8 @@ if (location == '') location = 'chicago'.toUpperCase();
 loadPage(location);
 getWeather(location);
 getTimeDate();
+// getFutureWeather(location);
 
 // updates time every second, and gets weather every minute
 setInterval(getTimeDate, 1000);
-setInterval(getWeather(location), 60000);
+setInterval(getWeather, 60000, location);

@@ -1,4 +1,4 @@
-import getTimeDate from "./getTimeDate";
+
 import sunCloudyIcon from './sun_cloudy.png';
 import sunIcon from './sun.png';
 import sunRainIcon from './sun_rain.png';
@@ -39,6 +39,7 @@ export default function loadPage(location) {
   let windText = document.createElement('p');
   let windNumber = document.createElement('p');
   let horizontalRule = document.createElement('hr');
+  let futureTitle = document.createElement('h5');
   let futureDayContainer = document.createElement('div');
   let futureCastContainer = document.createElement('div');
   
@@ -62,6 +63,7 @@ export default function loadPage(location) {
   perciptiationNumber.classList.add('percipitation-number');
   humidityNumber.classList.add('humidity-number');
   windNumber.classList.add('wind-number');
+  futureTitle.classList.add('future-title');
   futureDayContainer.classList.add('future-day-container');
   futureCastContainer.classList.add('future-cast-container');
 
@@ -85,21 +87,38 @@ export default function loadPage(location) {
   windText.textContent = 'Wind';
   locationLabel.textContent = 'Enter Location';
   weatherDetailsTitle.textContent = 'Weather Details';
-
+  futureTitle.textContent = '7 Day Forecast';
+  
   for (let i = 1; i < 8; i++)
   {
-    let day = document.createElement('p');
-    day.classList.add('future-day', `day${i}`);
-    futureDayContainer.append(day);
+    let dayContainer = document.createElement('div');
+    let dayName = document.createElement('p');
+    let dayCondition = document.createElement('p');
+    let dayHighTemp = document.createElement('p');
+    let dayLowTemp = document.createElement('p');
+
+
+    dayContainer.classList.add('day-container', `day${i}`);
+    dayName.classList.add('day-name');
+    dayCondition.classList.add('day-condition');
+    dayHighTemp.classList.add('day-high-temp');
+    dayLowTemp.classList.add('day-low-temp');
+
+    dayContainer.append(dayName, dayCondition, dayHighTemp, dayLowTemp);
+    futureDayContainer.append(dayContainer);
   }
 
 
   /////// APPEND ELEMENTS TO DOM \\\\\\\
   locationContainer.append(cityText, dateText);
   weatherIconContainer.append(currentWeatherImg, currentWeatherText);
+
   extraWeatherContainer.append(highText, highNumber, lowText, lowNumber, cloudyText, cloudyNumber, 
     percipitationText, perciptiationNumber, humidityText, humidityNumber, windText, windNumber);
-  futureCastContainer.append(locationLabel, locationInput, horizontalRule, weatherDetailsTitle, extraWeatherContainer);
+
+  futureCastContainer.append(locationLabel, locationInput, horizontalRule, weatherDetailsTitle, extraWeatherContainer,
+  document.createElement('hr'), futureTitle, futureDayContainer);
+
   headerContainer.append(currentTempText, locationContainer, weatherIconContainer);
   contentContainer.append(headerContainer, futureCastContainer);
 }

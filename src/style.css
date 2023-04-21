@@ -140,6 +140,11 @@ body {
   height: 5rem;
 }
 
+.current-weather-text {
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
 .future-cast-container {
   display: flex;
   flex-direction: column;

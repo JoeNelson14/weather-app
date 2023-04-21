@@ -1,14 +1,4 @@
 
-import sunCloudyIcon from './sun_cloudy.png';
-import sunIcon from './sun.png';
-import sunRainIcon from './sun_rain.png';
-import nightIcon from './night.png';
-import nightRainIcon from './night_rain.png';
-import rainIcon from './rain.png';
-import snowIcon from './snowflake.png';
-import sunnySky from './sunny_sky.jpg';
-import rainBG from './rain_bg.jpg';
-
 export default function loadPage() {
   /////// ELEMENT VARIABLES \\\\\\\
   let body = document.querySelector('body');
@@ -68,8 +58,8 @@ export default function loadPage() {
   futureCastContainer.classList.add('future-cast-container');
 
   /////// ATTRIBUTES \\\\\\\
-  currentWeatherImg.setAttribute('src', rainIcon);
-  body.style.backgroundImage = `url(${rainBG})`;
+  // currentWeatherImg.setAttribute('src', rainIcon);
+  // body.style.backgroundImage = `url(${rainBG})`;
   locationLabel.setAttribute('for', 'location-input');
   locationInput.setAttribute('type', 'text');
   locationInput.setAttribute('id', 'location-input');
@@ -87,6 +77,8 @@ export default function loadPage() {
   locationLabel.textContent = 'Enter Location';
   weatherDetailsTitle.textContent = 'Weather Details';
   futureTitle.textContent = '7 Day Forecast';
+
+
   
   for (let i = 1; i < 8; i++)
   {

@@ -1,6 +1,5 @@
 
 export default function getWeather(location) {
-  if (location == '') location = 'chicago';
   fetch(`https://api.weatherapi.com/v1/forecast.json?key=c020fe73274a40bbb80191217231404&q=${location}&days=8`, { mode: 'cors' })
     .then(function(response) {
       return response.json();
@@ -9,6 +8,10 @@ export default function getWeather(location) {
       console.log(data);
       let dt = new Date();
       let daysArray = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+      let cityText = document.querySelector('.city-text');
+      cityText.textContent = `${data.location.name}, ${data.location.region.slice(0,2).toUpperCase()}`;
+
       let currentTempText = document.querySelector('.current-temp-text');
       currentTempText.textContent = Math.round(data.current.temp_f);
 
@@ -25,13 +28,12 @@ export default function getWeather(location) {
       perciptiationNumber.textContent = data.current.precip_in + 'in';
 
       let humidityNumber = document.querySelector('.humidity-number');
-      humidityNumber.textContent = data.current.humidity;
+      humidityNumber.textContent = data.current.humidity + '%';
 
       let windNumber = document.querySelector('.wind-number');
       windNumber.textContent = data.current.wind_mph + 'mph';
 
-      let dayArrayElements = Array.from(document.querySelectorAll('.day-container'));
-      console.log(data)
+      let dayArrayElements = document.querySelectorAll('.day-container');
       let dayCount = dt.getDay();
 
       for (let i = 0; i < dayArrayElements.length; i++)
@@ -44,7 +46,5 @@ export default function getWeather(location) {
           'L: ' + Math.round(data.forecast.forecastday[i+1].day.mintemp_f);
         dayCount++;
       }
-      
-      console.log(dt.getDay());
     })
 }

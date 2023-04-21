@@ -9,7 +9,7 @@ import snowIcon from './snowflake.png';
 import sunnySky from './sunny_sky.jpg';
 import rainBG from './rain_bg.jpg';
 
-export default function loadPage(location) {
+export default function loadPage() {
   /////// ELEMENT VARIABLES \\\\\\\
   let body = document.querySelector('body');
   let contentContainer = document.querySelector('#content');
@@ -77,7 +77,6 @@ export default function loadPage(location) {
 
   /////// TEXT CONTENT \\\\\\\
   cityText.textContent = location;
-  currentTempText.textContent = '56';
   currentWeatherText.textContent ='Rainy';
   highText.textContent = 'High';
   lowText.textContent = 'Low';
@@ -116,8 +115,8 @@ export default function loadPage(location) {
   extraWeatherContainer.append(highText, highNumber, lowText, lowNumber, cloudyText, cloudyNumber, 
     percipitationText, perciptiationNumber, humidityText, humidityNumber, windText, windNumber);
 
-  futureCastContainer.append(locationLabel, locationInput, horizontalRule, weatherDetailsTitle, extraWeatherContainer,
-  document.createElement('hr'), futureTitle, futureDayContainer);
+  futureCastContainer.append(weatherDetailsTitle, extraWeatherContainer,
+  horizontalRule, futureTitle, futureDayContainer);
 
   headerContainer.append(currentTempText, locationContainer, weatherIconContainer);
   contentContainer.append(headerContainer, futureCastContainer);
